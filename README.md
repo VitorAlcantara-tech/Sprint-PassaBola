@@ -34,7 +34,7 @@ Aplicação web da **Passa a Bola** com dois objetivos principais:
 
 ---
 
-Acesse aqui: https://passabolaaa.vercel.app/
+Acesse aqui: https://passabolaa.vercel.app/
 
 ---
 
