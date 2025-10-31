@@ -4,7 +4,7 @@ import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import ModalLogin from "./ModalLogin";
 import { useState } from "react";
-import { UserContext } from "./carrosselInicio/HeaderHome";
+import useLoginAcess from "./hooks/useLoginAcess";
 
 export default function Header({ menuAberto, setMenuAberto }) {
   const LINKS = [
@@ -14,36 +14,29 @@ export default function Header({ menuAberto, setMenuAberto }) {
     { name: "Atletas", path: "/atletas" },
   ];
 
-  const [user, setUser] = useState(null)
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const { user, login } = useLoginAcess()
+  
 
   const handleLogin = (e) => {
     e?.preventDefault();
-
     if (!email || !senha) {
       alert("Preencha e-mail e senha.");
       return;
     }
 
-    const profiles = JSON.parse(localStorage.getItem("profiles") || "[]");
-    const userFound = profiles.find((p) => p.email === email && p.senha === senha);
-
-    if (email === 'admin@gmail.com' && senha === 'admin') {
-      userFound = { nome: "Admin", email: "admin@gmail.com" };
-    }
-
-    if (userFound) {
-      if (confirm(`Você é mesmo ${userFound.nome.toUpperCase()}?`)) {
-        if (userFound.nome === 'Admin') { setUser(true) }
-        else { setUser(false) }
-        setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
-        setMenuAberto(!menuAberto)
-      }
+    const user = login(email,senha)
+    
+    if (!user){
+    setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
+    setMenuAberto(!menuAberto)
     } else {
       alert("Usuário não encontrado. Verifique e-mail/senha ou cadastre-se.");
     }
+
+    console.log(user)
   };
 
 

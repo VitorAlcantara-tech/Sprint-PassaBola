@@ -4,6 +4,8 @@ import { Button } from "@/componentes/ui/button";
 import { Input } from "@/componentes/ui/input";
 import { Label } from "@/componentes/ui/label";
 import { IoPersonSharp } from "react-icons/io5";
+import { useContext } from "react";
+import { UserContext } from "./carrosselInicio/HeaderHome";
 
 export default function ModalLogin({ open, onOpenChange, email, senha, onEmail, onSenha, onSubmit }) {
   return (
@@ -14,7 +16,7 @@ export default function ModalLogin({ open, onOpenChange, email, senha, onEmail, 
           className="md:absolute md:right-10 md:top-10 z-10 text-2xl text-white rounded-full p-2 bg-gray-500/80 cursor-pointer transition-transform duration-300 hover:scale-105"
           aria-label="Abrir login"
         >
-          <IoPersonSharp aria-hidden />
+          {useContext(UserContext) == false? <IoPersonSharp aria-hidden />: useContext(UserContext)? 'Olá User' : 'Olá Admin'}
         </button>
       </DialogTrigger>
 
