@@ -82,10 +82,11 @@ export default function Jogos() {
                 </div>
 
                 <div className="mt-6 flex justify-center">
-                    <button
+                    <a
+                        href="/jogos"
                         className=" inline-flex items-center gap-2 rounded-full border border-white/25  bg-white/10 px-5 py-2 text-sm text-white/90 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50" >
                         Ver todos os jogos
-                    </button>
+                    </a>
                 </div>
             </div>
 

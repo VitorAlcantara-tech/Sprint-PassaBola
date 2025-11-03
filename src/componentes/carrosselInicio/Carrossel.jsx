@@ -69,8 +69,11 @@ export default function Carrossel() {
           </div>
         )}
 
-        <div className="absolute left-6 right-6 bottom-5 md:left-12 md:right-auto
-                flex items-center justify-center gap-5">
+        <div
+          aria-hidden={menuAberto}
+          className={`absolute left-6 right-6 bottom-5 md:left-12 md:right-auto
+              flex items-center justify-center gap-5 transition-opacity
+              ${menuAberto ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
           {data.map((item, idx) => {
             const isActive = idx === currentState;
             return (
