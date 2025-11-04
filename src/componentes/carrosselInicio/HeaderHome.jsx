@@ -3,7 +3,8 @@ import logotipo from "../../assets/Logotipo-PassaBola-Branco.png";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import ModalLogin from "../ModalLogin";
 import { createContext, useState } from "react";
-import useLoginAcess from "../hooks/useLoginAcess";
+import { useContext } from "react";
+import { LoginContext } from "@/contexts/LoginContext.jsx";
 
 export const UserContext = createContext();
 
@@ -18,7 +19,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const {user, login } = useLoginAcess()
+  const {user, login} = useContext(LoginContext)
 
   const handleLogin = (e) => {
     e?.preventDefault();
@@ -41,7 +42,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
 
 
   return (
-    <UserContext.Provider value={user}>
+    <>
       <header className="w-full flex justify-between">
         {/* Menu Mobile */}
         <div className="flex">
@@ -133,6 +134,6 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
           />
         </div>
       </header>
-    </UserContext.Provider>
+    </>
   );
 }

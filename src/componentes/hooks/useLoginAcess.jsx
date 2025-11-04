@@ -6,7 +6,6 @@ const useLoginAcess = () => {
     const login = (email, senha) => {
         const profiles = JSON.parse(localStorage.getItem("profiles") || "[]");
         let userFound = false
-        console.log(profiles)
 
         if (email == 'admin@gmail.com' && senha == 'admin'){
             userFound = null
