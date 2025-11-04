@@ -29,7 +29,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
 
     const user = login(email,senha)
     
-    if (user){
+    if (user || user === null){
     setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
     setMenuAberto(!menuAberto)
     } else {

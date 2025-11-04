@@ -29,9 +29,9 @@ export default function Header({ menuAberto, setMenuAberto }) {
 
     const user = login(email,senha)
     
-    if (!user){
-    setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
-    setMenuAberto(!menuAberto)
+    if (user || user === null){
+      setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
+      setMenuAberto(!menuAberto)
     } else {
       alert("Usuário não encontrado. Verifique e-mail/senha ou cadastre-se.");
     }
