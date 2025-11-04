@@ -4,12 +4,16 @@ import imagemJogadora from "../assets/imagemJogadora.png"
 import imagemJogadora2 from "../assets/imagemJogadora2.jpg"
 import imagemJogadora3 from "../assets/imagemJogadora3.jpg"
 import imagemJogadora4 from "../assets/imagemJogadora4.jpg"
+import { useContext } from "react";
+import { LoginContext } from "@/contexts/LoginContext.jsx";
 
 export default function Atletas() {
 
+    const {user, login} = useContext(LoginContext)
+
     return (
         <>
-            
+            {user === null? <button>Criar card</button>: <></>}
             <Titulo
                 title="Atletas Destaque"
                 position="start"
