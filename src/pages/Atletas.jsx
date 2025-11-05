@@ -13,7 +13,7 @@ export default function Atletas() {
 
     return (
         <>
-            {user === null? <button>Criar card</button>: <></>}
+            {user === null? console.log('FOI'): <></>}
             <Titulo
                 title="Atletas Destaque"
                 position="start"
