@@ -3,6 +3,8 @@ import TabelaHead from "../componentes/TableGames/TabelaHead.jsx";
 import TabelaBody from "../componentes/TableGames/TabelaBody.jsx";
 import DocumentosCopa from "../componentes/componentesCampeonatos/DocumentosCopa.jsx";
 import Patrocinadores from "../componentes/Patrocinadores.jsx";
+import { useContext } from "react";
+import { LoginContext } from "@/contexts/LoginContext.jsx";
 
 export default function Jogos() {
   const times = [
@@ -16,6 +18,7 @@ export default function Jogos() {
     { time: "Time B", v: 10, e: 2, d: 0, sg: 4, ca: 2, cv: 0 },
     { time: "Time C", v: 1, e: 1, d: 2, sg: 2, ca: 5, cv: 0 },
   ];
+  const {user, login} = useContext(LoginContext)
 
   function jogosTotais(time) {
     return time.v + time.e + time.d;

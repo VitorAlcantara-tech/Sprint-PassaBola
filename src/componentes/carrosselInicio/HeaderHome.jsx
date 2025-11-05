@@ -4,6 +4,8 @@ import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { IoPersonSharp } from "react-icons/io5";
 import ModalLogin from "../ModalLogin";
 import { createContext, useState } from "react";
+import { useContext } from "react";
+import { LoginContext } from "@/contexts/LoginContext.jsx";
 import useLoginAcess from "../hooks/useLoginAcess";
 import { AdminDropdown } from "../AdminDropdown";
 
@@ -19,9 +21,10 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
   ];
 
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [senha, setSenha] = useS
+tate("");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const {user, login } = useLoginAcess()
+  const {user, login} = useContext(LoginContext)
 
   const handleLogin = (e) => {
     e?.preventDefault();
@@ -32,7 +35,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
 
     const user = login(email,senha)
     
-    if (user){
+    if (user || user === null){
     setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
     setMenuAberto(!menuAberto)
     } else {
@@ -44,7 +47,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
 
  
   return (
-    <UserContext.Provider value={user}>
+    <>
       <header className="w-full flex justify-between relative">
         {/* Menu Mobile */}
         <div className="flex">
@@ -174,6 +177,6 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
           </div>
         )}
       </header>
-    </UserContext.Provider>
+    </>
   );
 }
