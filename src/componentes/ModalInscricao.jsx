@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { Button } from "@/componentes/ui/button";
 import { Input } from "@/componentes/ui/input";
 import { Label } from "@/componentes/ui/label";
+import { Link } from "react-router-dom";
 
 export function ModalInscricao({ children }) {
     return (
@@ -18,8 +19,8 @@ export function ModalInscricao({ children }) {
                 </DialogHeader>
 
                 <div className="flex gap-10 justify-center">
-                    <Button className="bg-[#300B74] duration-300 hover:bg-[#220854] hover:scale-105">INDIVIDUAL</Button>
-                    <Button className="bg-[#300B74] duration-300 hover:bg-[#220854] hover:scale-105">TIME</Button>
+                    <Link to='/individual' className="bg-[#300B74] duration-300 hover:bg-[#220854] hover:scale-105">INDIVIDUAL</Button>
+                    <Link to='/time' className="bg-[#300B74] duration-300 hover:bg-[#220854] hover:scale-105">TIME</Button>
                 </div>
             </DialogContent>
         </Dialog>
