@@ -21,5 +21,5 @@ export const router = createBrowserRouter([
   },
   { path: "/cadastro", element: <Cadastro /> },
   { path: "/individual", element: <InscricaoIndividual/>},
-  { path: "/individual", element: <InscricaoTime/>}
+  { path: "/time", element: <InscricaoTime/>}
 ]);
