@@ -24,7 +24,6 @@ const InscricaoTime = () => {
       return;
     }
 
-    // Salvar o time
     const teamSub = JSON.parse(localStorage.getItem("team-sub") || "[]");
     teamSub.push({
       nameTeam,
@@ -35,7 +34,6 @@ const InscricaoTime = () => {
     });
     localStorage.setItem("team-sub", JSON.stringify(teamSub));
 
-    // Salvar todas as jogadoras separadamente também
     const playersSub = JSON.parse(localStorage.getItem("players-sub") || "[]");
     const updatedPlayersSub = [...playersSub, ...players];
     localStorage.setItem("players-sub", JSON.stringify(updatedPlayersSub));
@@ -54,29 +52,37 @@ const InscricaoTime = () => {
           Inscrição de Time – Copa Passa a Bola
         </h1>
 
-        {/* DADOS DO TIME */}
-        <div className="flex flex-col gap-6 border-2 rounded-sm p-8 md:grid grid-cols-2">
-          <h3>Dados do Time</h3>
+        <div className="flex flex-col gap-6 border border-[#000000] rounded-sm p-8">
+          <h3 className="font-Jockey text-[#300B74] text-[32px] md:mt-10 md:text-[52px]">Dados do Time</h3>
           <InfoUsers campo="Nome do Time" type="input" change={(e) => setNameTeam(e.target.value)} />
           <InfoUsers campo="Categoria" type="input" change={(e) => setCategory(e.target.value)} />
           <InfoUsers campo="Logo/Escudo do time" type="input" change={() => null} />
           <InfoUsers campo="Observações (opcional)" type="input" change={(e) => setObs(e.target.value)} />
         </div>
 
-        {/* RESPONSÁVEL */}
-        <div className="flex flex-col gap-6 md:grid grid-cols-2">
-          <h3>Responsável/Técnico</h3>
+        <div className="flex flex-col gap-6 border border-[#000000] rounded-sm p-8">
+          <h3 className="font-Jockey text-[#300B74] text-[32px] md:mt-10 md:text-[52px]">Responsável/Técnico</h3>
           <InfoUsers campo="Nome" type="input" change={(e) => setName(e.target.value)} />
           <InfoUsers campo="Email" type="input" change={(e) => setEmail(e.target.value)} />
           <InfoUsers campo="Documento (RG/CPF)" type="input" change={(e) => setDoc(e.target.value)} />
           <InfoUsers campo="Telefone para contato" type="input" change={(e) => setPhone(e.target.value)} />
         </div>
 
-        {/* JOGADORAS */}
         <TeamPlayers onPlayersChange={setPlayers} />
-
-        <Acesso btn2="Formulário Individual" handle={() => navigate("/individual")} />
-        <Acesso btn2="Inscrever-se" handle={() => handleSubscribe("/")} />
+        <div className="flex justify-around min-w-[80%] mb-10">
+          <button
+            onClick={() => navigate("/individual")}
+            className="flex items-center justify-center bg-[#44159a] duration-200 cursor-pointer hover:bg-[#300B74] text-white font-Rambla w-[220px] h-[62px] text-[20px] rounded-full hover:shadow-xl transform hover:scale-105 transition"
+          >
+            Formulário Individual
+          </button>
+          <button
+            onClick={() => handleSubscribe("/")}
+            className="flex items-center justify-center bg-[#44159a] duration-200 cursor-pointer hover:bg-[#300B74] text-white font-Rambla w-[220px] h-[62px] text-[20px] rounded-full hover:shadow-xl transform hover:scale-105 transition"
+          >
+            Inscrever-se
+          </button>
+        </div>
       </div>
     </div>
   );

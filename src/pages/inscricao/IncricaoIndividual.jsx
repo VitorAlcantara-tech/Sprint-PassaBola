@@ -27,7 +27,7 @@ const InscricaoIndividual = () => {
 
     return (
     <div className="min-h-screen flex items-center justify-center bg-[linear-gradient(to_bottom,#300B74_38%,#5A15DA_100%)] md:bg-[url('/mosaic-bg.png')] bg-cover bg-center md:bg-cover md:bg-center">
-      <div className="flex flex-col p-10 gap-10 mx-4 my-20 bg-[#F9F9F9] rounded-4xl h-[759px] md:w-6xl md:h-[759px] md:items-center">
+      <div className="flex flex-col p-10 gap-10 mx-4 my-20 bg-[#F9F9F9] rounded-4xl md:w-6xl md:items-center">
         <Link to="/" className="flex self-start">
           <FaArrowLeft size={30} />
         </Link>
@@ -63,9 +63,20 @@ const InscricaoIndividual = () => {
             change={(e) => setPhone(e.target.value)}
           />
         </div>
-
-        <Acesso btn2="Formulário para times" handle={() => {navigate('/time')}}/>
-        <Acesso btn2="Inscrever-se" handle={() => handleSubscribe('/')} />
+        <div className="flex justify-around min-w-[80%] mb-10">
+          <button
+            onClick={() => {navigate('/time')}}
+            className="flex items-center justify-center bg-[#44159a] duration-200 cursor-pointer hover:bg-[#300B74] text-white font-Rambla w-[220px] h-[62px] text-[20px] rounded-full hover:shadow-xl transform hover:scale-105 transition"
+          >
+            Formulário para times
+          </button>
+          <button
+            onClick={() => handleSubscribe('/')}
+            className="flex items-center justify-center bg-[#44159a] duration-200 cursor-pointer hover:bg-[#300B74] text-white font-Rambla w-[220px] h-[62px] text-[20px] rounded-full hover:shadow-xl transform hover:scale-105 transition"
+          >
+            Inscrever-se
+          </button>
+        </div>
       </div>
     </div>
     )
