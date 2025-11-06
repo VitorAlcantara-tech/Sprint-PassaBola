@@ -1,20 +1,36 @@
 import { useState } from "react";
 
 const useLoginAcess = () => {
-    const [user, setUser] = useState(false)
+    const [user, setUser] = useState(false);
+    const [userName, setUserName] = useState("");
     
     const login = (email, senha) => {
         const profiles = JSON.parse(localStorage.getItem("profiles") || "[]");
-        let userFound = false
+        let userFound = false;
+        let foundName = "";
+
+        if (email === 'admin@gmail.com' && senha === 'admin') {
+            userFound = null;
+            foundName = "Admin";
+        } else {
+            const profile = profiles.find((p) => p.email === email && p.senha === senha);
+            if (profile) {
+                userFound = true;
+                foundName = profile.nome;
+            }
+        }
         
-        if (email == 'admin@gmail.com' && senha == 'admin'){
-            userFound = null
-        } else {if (profiles.find((p) => p.email === email && p.senha === senha)) {userFound=true}}
-        
-        setUser(userFound)
-        return userFound
+        setUser(userFound);
+        setUserName(foundName);
+        return userFound;
     }
-    return { user, login }
+
+    const logout = () => {
+        setUser(false);
+        setUserName("");
+    }
+
+    return { user, userName, login, logout }
 }
 
 export default useLoginAcess

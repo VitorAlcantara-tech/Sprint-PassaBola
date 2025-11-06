@@ -5,7 +5,7 @@ import logoBrasa from "../assets/brasa.png";
 
 export default function Patrocinadores() {
   return (
-    <section>
+    <section className="mb-10">
       <Titulo title="Patrocinadores" position="start" color="#300B74" />
       <div className="gap-8 flex justify-center flex-wrap lg:gap-30 ">
         <img
