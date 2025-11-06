@@ -3,7 +3,7 @@ import { FaInstagram, FaXTwitter, FaYoutube, FaTiktok } from "react-icons/fa6";
 
 export default function Footer() {
     return (
-        <footer className="bg-[#540FD4] text-white mt-10">
+        <footer className="bg-[#540FD4] text-white mt-0">
             {/* topo decorativo opcional */}
             <div className="h-[3px] bg-[linear-gradient(90deg,_#2C086E_0%,_#540FD4_50%,_#300B74_100%)]" />
 

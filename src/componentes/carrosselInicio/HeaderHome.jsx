@@ -23,7 +23,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const {user, login} = useContext(LoginContext)
+  const { user, userName, login, logout } = useContext(LoginContext)
 
   const handleLogin = (e) => {
     e?.preventDefault();
@@ -32,11 +32,11 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
       return;
     }
 
-    const user = login(email,senha)
-    
-    if (user || user === null){
-    setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
-    setMenuAberto(!menuAberto)
+    const user = login(email, senha)
+
+    if (user || user === null) {
+      setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
+      setMenuAberto(!menuAberto)
     } else {
       alert("Usuário não encontrado. Verifique e-mail/senha ou cadastre-se.");
     }
@@ -44,7 +44,15 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
     console.log(user)
   };
 
- 
+  const onLogout = () => {
+    logout();
+    setMenuAberto(false);
+    setIsLoginOpen(false);
+  }
+
+
+
+
   return (
     <>
       <header className="w-full flex justify-between relative">
@@ -57,7 +65,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
           >
             {menuAberto ? <IoMdClose size={46} /> : <IoMdMenu size={46} />}
           </button>
-          
+
 
           {/* Botão de login/admin no mobile */}
           {user === false ? (
@@ -74,28 +82,28 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
                 <IoPersonSharp aria-hidden />
               </button>
             </div>
-          ) : user === null?(
+          ) : user === null ? (
             <div className="absolute md:hidden left-26 top-11 z-[100]">
-              <AdminDropdown 
-              name='Adm'
-              onLogout/>
+              <AdminDropdown
+                name='Adm'
+                onLogout={onLogout} />
             </div>
-          ) :  user ?(
+          ) : user ? (
             <div className="absolute md:hidden left-26 top-11 z-[100]">
-              <AdminDropdown 
-              name=''
-              onLogout/>
-            </div>): null}
-  
+              <AdminDropdown
+                name={userName}
+                onLogout={onLogout} />
+            </div>) : null}
+
         </div>
 
-  
+
         <div
           className={`absolute md:hidden top-0 left-0 w-full h-screen bg-[#561EBD] flex flex-col items-center gap-6 text-2xl uppercase transform transition-transform ${menuAberto ? "opacity-100" : "opacity-0"
             }`}
           style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
         >
-          
+
           <div className="absolute top-30 left-5">
             {LINKS.map((link, index) => (
               <Link
@@ -110,7 +118,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
           </div>
         </div>
 
-        
+
         <Link to="/">
           <img
             src={logotipo}
@@ -119,7 +127,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
           />
         </Link>
 
-        
+
         <div className="absolute top-10 ml-45 sm:left-8">
           <nav
             className="hidden font-Jockey uppercase sm:text-[25px] md:flex items-center gap-12"
@@ -151,17 +159,17 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
           </button>
         ) : user === null ? (
           <div className="hidden md:block absolute right-10 top-10">
-            <AdminDropdown 
-            name='Adm'
-            onLogout/>
+            <AdminDropdown
+              name='Adm'
+              onLogout={onLogout} />
           </div>
-        ) : user? (
+        ) : user ? (
           <div className="hidden md:block absolute right-10 top-10">
-            <AdminDropdown 
-            name=''
-            onLogout/>
+            <AdminDropdown
+              name={userName}
+              onLogout={onLogout} />
           </div>
-        ): null}
+        ) : null}
 
         {/* Modal de Login (usado quando clica no botão) */}
         <div className="hidden md:block">

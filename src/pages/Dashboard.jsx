@@ -8,6 +8,7 @@ export default function Dashboard() {
   const [games, setGames] = useState([
     { id: 1, date: "10/08", time: "19:00", teamA: "Time A", teamB: "Time B", round: "Quartas" },
     { id: 2, date: "12/08", time: "21:00", teamA: "Time C", teamB: "Time D", round: "Semifinal" },
+    { id: 3, date: "14/08", time: "21:00", teamA: "Time D", teamB: "Time E", round: "Semifinal" },
   ]);
 
   const [featuredAthletes, setFeaturedAthletes] = useState([
@@ -65,7 +66,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gradient-to-b from-[#561EBD] to-[#240675] text-white px-6 py-10">
       {/* Título */}
       <header className="max-w-6xl mx-auto mb-10">
-        <h1 className="text-3xl md:text-4xl font-Jockey uppercase tracking-widest">
+        <h1 className="text-3xl md:text-5xl font-Jockey uppercase tracking-widest">
           Dashboard da Copa
         </h1>
         <p className="mt-2 text-sm md:text-base text-white/80">
