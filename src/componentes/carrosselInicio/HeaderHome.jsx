@@ -20,7 +20,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
   const [senha, setSenha] = useState("");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const {user, login} = useContext(LoginContext)
-
+  
   const handleLogin = (e) => {
     e?.preventDefault();
     if (!email || !senha) {

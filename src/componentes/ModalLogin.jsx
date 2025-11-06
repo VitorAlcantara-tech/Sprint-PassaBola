@@ -8,6 +8,10 @@ import { useContext } from "react";
 import { UserContext } from "./carrosselInicio/HeaderHome";
 
 export default function ModalLogin({ open, onOpenChange, email, senha, onEmail, onSenha, onSubmit }) {
+  
+  const user = useContext(UserContext);
+  console.log("Valor atual de UserContext:", user);
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
@@ -16,7 +20,7 @@ export default function ModalLogin({ open, onOpenChange, email, senha, onEmail, 
           className="md:absolute md:right-10 md:top-10 z-10 text-2xl text-white rounded-full p-2 bg-gray-500/80 cursor-pointer transition-transform duration-300 hover:scale-105"
           aria-label="Abrir login"
         >
-          {useContext(UserContext) == false? <IoPersonSharp aria-hidden />: useContext(UserContext)? 'Olá User' : 'Olá Admin'}
+          {user === false? <IoPersonSharp aria-hidden />: user? 'Olá User' : 'Olá Admin'}
         </button>
       </DialogTrigger>
 
