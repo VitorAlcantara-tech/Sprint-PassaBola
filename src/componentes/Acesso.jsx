@@ -10,7 +10,7 @@ export default function Acesso({ btn2, handle }) {
       >
         {btn2}
       </button>
-    
+
     </div>
   );
 }
