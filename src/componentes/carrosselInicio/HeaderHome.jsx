@@ -21,8 +21,7 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
   ];
 
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useS
-tate("");
+  const [senha, setSenha] = useState("");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const {user, login} = useContext(LoginContext)
 
@@ -75,11 +74,18 @@ tate("");
                 <IoPersonSharp aria-hidden />
               </button>
             </div>
-          ) : (
+          ) : user === null?(
             <div className="absolute md:hidden left-26 top-11 z-[100]">
-              <AdminDropdown />
+              <AdminDropdown 
+              name='Adm'
+              onLogout/>
             </div>
-          )}
+          ) :  user ?(
+            <div className="absolute md:hidden left-26 top-11 z-[100]">
+              <AdminDropdown 
+              name=''
+              onLogout/>
+            </div>): null}
   
         </div>
 
@@ -143,11 +149,19 @@ tate("");
           >
             <IoPersonSharp aria-hidden />
           </button>
-        ) : (
+        ) : user === null ? (
           <div className="hidden md:block absolute right-10 top-10">
-            <AdminDropdown />
+            <AdminDropdown 
+            name='Adm'
+            onLogout/>
           </div>
-        )}
+        ) : user? (
+          <div className="hidden md:block absolute right-10 top-10">
+            <AdminDropdown 
+            name=''
+            onLogout/>
+          </div>
+        ): null}
 
         {/* Modal de Login (usado quando clica no botão) */}
         <div className="hidden md:block">

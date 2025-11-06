@@ -6,6 +6,7 @@ import Campeonatos from "../pages/Campeonatos";
 import Atletas from "../pages/Atletas";
 import Layout from "../componentes/Layout";
 import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "@/pages/Dashboard";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
       { path: "/jogos", element: <Jogos /> },
       { path: "/campeonatos", element: <Campeonatos /> },
       { path: "/atletas", element: <Atletas /> },
+      { path:"/dashboard", element: <Dashboard />}
     ],
   },
   { path: "/cadastro", element: <Cadastro /> },
