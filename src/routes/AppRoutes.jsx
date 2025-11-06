@@ -5,6 +5,8 @@ import Login from "../pages/Login";
 import Campeonatos from "../pages/Campeonatos";
 import Atletas from "../pages/Atletas";
 import Layout from "../componentes/Layout";
+import InscricaoTime from "../pages/inscricao/InscricaoTime";
+import InscricaoIndividual from "../pages/inscricao/IncricaoIndividual";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -18,4 +20,6 @@ export const router = createBrowserRouter([
     ],
   },
   { path: "/cadastro", element: <Cadastro /> },
+  { path: "/individual", element: <InscricaoIndividual/>},
+  { path: "/individual", element: <InscricaoTime/>}
 ]);

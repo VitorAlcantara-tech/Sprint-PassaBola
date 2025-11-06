@@ -19,8 +19,8 @@ export function ModalInscricao({ children }) {
                 </DialogHeader>
 
                 <div className="flex gap-10 justify-center">
-                    <Link to='/individual' className="bg-[#300B74] duration-300 hover:bg-[#220854] hover:scale-105">INDIVIDUAL</Button>
-                    <Link to='/time' className="bg-[#300B74] duration-300 hover:bg-[#220854] hover:scale-105">TIME</Button>
+                    <Link to='/individual'><Button className="bg-[#300B74] duration-300 hover:bg-[#220854] hover:scale-105">INDIVIDUAL</Button></Link>
+                    <Link to='/time'><Button className="bg-[#300B74] duration-300 hover:bg-[#220854] hover:scale-105">TIME</Button></Link>
                 </div>
             </DialogContent>
         </Dialog>
