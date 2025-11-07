@@ -5,6 +5,8 @@ import DocumentosCopa from "../componentes/componentesCampeonatos/DocumentosCopa
 import Patrocinadores from "../componentes/Patrocinadores.jsx";
 import { useContext } from "react";
 import { LoginContext } from "@/contexts/LoginContext.jsx";
+import SectionJogos from "../componentes/componentesJogos/SectionJogos.jsx";
+
 
 export default function Jogos() {
   const times = [
@@ -76,6 +78,7 @@ export default function Jogos() {
           </tbody>
         </table>
       </div>
+      <SectionJogos limite={true} />
       <section className="my-10 mb-20">
         <DocumentosCopa />
       </section>

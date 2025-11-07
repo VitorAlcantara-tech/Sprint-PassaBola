@@ -1,6 +1,8 @@
 import fundoHeader from "../assets/imagemHeader.png";
 import logo from "../assets/Logotipo-PassaBola-Branco.png";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
+import { IoPersonSharp } from "react-icons/io5";
+import { AdminDropdown } from "./AdminDropdown";
 import { Link } from "react-router-dom";
 import ModalLogin from "./ModalLogin";
 import { useState } from "react";
@@ -18,7 +20,7 @@ export default function Header({ menuAberto, setMenuAberto }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const {user, login} = useContext(LoginContext)
+  const { user, userName, login, logout } = useContext(LoginContext);
   
 
   const handleLogin = (e) => {
@@ -32,12 +34,19 @@ export default function Header({ menuAberto, setMenuAberto }) {
     
     if (user || user === null){
       setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
-      setMenuAberto(!menuAberto)
+      // fechar o menu para não exibir a camada que cobre o carrossel
+      setMenuAberto(false)
     } else {
       alert("Usuário não encontrado. Verifique e-mail/senha ou cadastre-se.");
     }
 
     console.log(user)
+  };
+
+  const onLogout = () => {
+    logout();
+    setMenuAberto(false);
+    setIsLoginOpen(false);
   };
 
 
@@ -57,9 +66,35 @@ export default function Header({ menuAberto, setMenuAberto }) {
             >
               {menuAberto ? <IoMdClose size={46} /> : <IoMdMenu size={46} />}
             </button>
+
+            {/* Mobile: botão de login / dropdown de conta */}
+            {user === false ? (
+              <div
+                className={`absolute md:hidden left-25 top-5.5 z-999
+                                    ${menuAberto ? "opacity-100" : "opacity-0"}`}
+              >
+                <button
+                  type="button"
+                  onClick={() => setIsLoginOpen(true)}
+                  className="text-2xl text-white rounded-full p-2 bg-gray-500/80 cursor-pointer transition-transform duration-300 hover:scale-105"
+                  aria-label="Abrir login"
+                >
+                  <IoPersonSharp aria-hidden />
+                </button>
+              </div>
+            ) : user === null ? (
+              <div className="absolute md:hidden left-25 top-5.5 z-999">
+                <AdminDropdown name={"Adm"} onLogout={onLogout} />
+              </div>
+            ) : user ? (
+              <div className="absolute md:hidden left-25 top-5.5 z-999">
+                <AdminDropdown name={userName} onLogout={onLogout} />
+              </div>
+            ) : null}
+
+            {/* ModalLogin mobile (mantém a renderização para o Dialog controlar abertura) */}
             <div
-              className={`absolute md:hidden left-25 top-5.5 z-999
-                                  ${menuAberto ? "opacity-100" : "opacity-0"}`}
+              className={`absolute md:hidden left-25 top-5.5 z-999 ${menuAberto ? "opacity-100" : "opacity-0"}`}
             >
               <ModalLogin
                 open={isLoginOpen}
@@ -117,9 +152,7 @@ export default function Header({ menuAberto, setMenuAberto }) {
             ))}
           </nav>
         </div>
-        <div
-          className="hidden md:block top-0"
-        >
+        <div className="hidden md:block top-0">
           <ModalLogin
             open={isLoginOpen}
             onOpenChange={setIsLoginOpen}
@@ -130,6 +163,26 @@ export default function Header({ menuAberto, setMenuAberto }) {
             onSubmit={handleLogin}
           />
         </div>
+
+        {/* Desktop: botão de login / dropdown */}
+        {user === false ? (
+          <button
+            type="button"
+            onClick={() => setIsLoginOpen(true)}
+            className="hidden md:block absolute right-10 top-10 z-10 text-2xl text-white rounded-full p-2 bg-gray-500/80 cursor-pointer transition-transform duration-300 hover:scale-105"
+            aria-label="Abrir login"
+          >
+            <IoPersonSharp aria-hidden />
+          </button>
+        ) : user === null ? (
+          <div className="hidden md:block absolute right-10 top-10">
+            <AdminDropdown name={"Adm"} onLogout={onLogout} />
+          </div>
+        ) : user ? (
+          <div className="hidden md:block absolute right-10 top-10">
+            <AdminDropdown name={userName} onLogout={onLogout} />
+          </div>
+        ) : null}
       </header>
     </>
   );

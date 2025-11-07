@@ -36,7 +36,9 @@ export default function HeaderHome({ menuAberto, setMenuAberto }) {
 
     if (user || user === null) {
       setIsLoginOpen(false);   // <<< fecha o ModalLogin aqui
-      setMenuAberto(!menuAberto)
+      // fechar o menu — não abrir/alternar, pois isso pode mostrar
+      // a camada que cobre o carrossel
+      setMenuAberto(false)
     } else {
       alert("Usuário não encontrado. Verifique e-mail/senha ou cadastre-se.");
     }
