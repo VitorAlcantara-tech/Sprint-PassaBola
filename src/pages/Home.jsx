@@ -1,5 +1,5 @@
 import Carrossel from "../componentes/carrosselInicio/Carrossel.jsx";
-import Jogos from "../componentes/componentesJogos/Jogos.jsx";
+import SectionJogos from "../componentes/componentesJogos/SectionJogos.jsx";
 import Noticias from "../componentes/componentesNotícia/Noticias.jsx";
 import SobreNos from "../componentes/componentesSobreNos/SobreNos.jsx";
 import Footer from "../componentes/Footer.jsx";
@@ -10,7 +10,7 @@ export default function Home() {
     <>
         <Carrossel />
         <Noticias />
-        <Jogos />
+        <SectionJogos limite={false} />
         <SobreNos />
         <Patrocinadores />
       <Footer />

@@ -5,8 +5,8 @@ export default function InfoUsers({ campo, type, change }) {
         {campo}
       </h3>
       {type === "select" ? (
-        <select onChange={change} className="font-Raleway text-[#736B81] border-[0.5px] rounded-2xl p-2 border-[#A7A7A7] md:text-[25px]">
-          <option value="" disabled selected>
+        <select defaultValue="" onChange={change} className="font-Raleway text-[#736B81] border-[0.5px] rounded-2xl p-2 border-[#A7A7A7] md:text-[25px]">
+          <option value="" disabled>
             Selecione...
           </option>
           <option value="sim">Sim</option>

@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function Layout() {
   const [menuAberto, setMenuAberto] = useState(false);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header menuAberto={menuAberto} setMenuAberto={setMenuAberto} />{" "}
